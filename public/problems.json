@@ -8,7 +8,9 @@
         "b", "bb", "bbb", "bbbb", "bbbbb",
         "c", "cc", "ccc", "cccc", "ccccc"
       ],
-      "fails": []
+      "fails": [],
+      "hidden_passes": [],
+      "hidden_fails": []
     }
   },
   {
@@ -25,7 +27,9 @@
         "abc",
         "cccccc",
         "acabb"
-      ]
+      ],
+      "hidden_passes": [],
+      "hidden_fails": []
     }
   }
 ]
