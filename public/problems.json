@@ -1,0 +1,31 @@
+[
+  {
+    "title": "はじめの一歩",
+    "description": "まずはこの問題から始めてみよう。",
+    "test_cases": {
+      "passes": [
+        "a", "aa", "aaa", "aaaa", "aaaaa",
+        "b", "bb", "bbb", "bbbb", "bbbbb",
+        "c", "cc", "ccc", "cccc", "ccccc"
+      ],
+      "fails": []
+    }
+  },
+  {
+    "title": "数に注目",
+    "description": "5個連続する並びにマッチするには？",
+    "test_cases": {
+      "passes": [
+        "aaaaa",
+        "bbbbb",
+        "ccccc"
+      ],
+      "fails": [
+        "aa",
+        "abc",
+        "cccccc",
+        "acabb"
+      ]
+    }
+  }
+]
