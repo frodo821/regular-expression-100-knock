@@ -27,6 +27,6 @@ interface TestCases {
   // 例として表示されない、マッチするべき文字列
   hidden_passes: string[];
   // 例として表示されない、 マッチしてはならない文字列
-  hidden_passes: string[];
+  hidden_fails: string[];
 }
 ```
