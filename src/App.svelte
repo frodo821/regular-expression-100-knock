@@ -1,30 +1,45 @@
 <script lang="ts">
-	export let name: string;
+  import { MaterialApp, ProgressCircular } from 'svelte-materialify';
+  import { fetchProblems } from './problem';
+  import Problem from './widget/Problem.svelte';
+
+  let request = fetchProblems();
 </script>
 
-<main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
-</main>
+<MaterialApp>
+  <header>
+    <h1>正規表現100本ノック</h1>
+  </header>
+  <main>
+    {#await request}
+      <div class="wait">
+        <ProgressCircular indeterminate color="primary" />
+      </div>
+    {:then problems}
+      {#each problems as problem}
+        <Problem {problem} />
+      {/each}
+    {/await}
+  </main>
+</MaterialApp>
 
-<style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
+<style lang="scss">
+  @import 'theme/theme';
 
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
+  h1 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 2rem;
+    background: $primary-color;
+    color: map-get(map-get($material-dark-theme, 'text'), 'primary');
+    padding-left: 2rem;
+  }
 
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
+  main {
+    position: relative;
+    padding-bottom: 3rem;
+  }
+
+  :global(body) {
+    padding: 0;
+  }
 </style>
