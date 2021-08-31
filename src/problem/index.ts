@@ -1,6 +1,6 @@
 /**
  * 問題を表す型
-*/
+ */
 export interface Problem {
   /** タイトル */
   title: string;
@@ -26,6 +26,20 @@ export interface TestCases {
   hidden_fails: string[];
 }
 
+export interface TestResultFailed {
+  status: 'wrong';
+  wa_case: string;
+  match: boolean;
+}
+
+export interface TestResultSuccess {
+  status: 'accepted';
+}
+
+export type TestResult = TestResultFailed | TestResultSuccess;
+
+export type TestStatus = TestResult['status'];
+
 export async function fetchProblems(): Promise<Problem[] | null> {
   let req = await fetch('/problems.json');
 
@@ -34,4 +48,15 @@ export async function fetchProblems(): Promise<Problem[] | null> {
   }
 
   return req.json();
+}
+
+export function resultMessage(result: TestResult) {
+  if (result.status === 'accepted') {
+    return '成功！';
+  }
+  if (result.status === 'wrong') {
+    return `失敗: <code>${result.wa_case}</code>に${
+      result.match ? 'マッチしなかった' : 'マッチしてしまった'
+    }。`;
+  }
 }
