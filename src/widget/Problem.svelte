@@ -71,7 +71,7 @@
 <div class="problem">
   <h2 class="title">{problem.title}</h2>
   <div class="contents">
-    <p class="description">{marked(problem.description)}</p>
+    <div class="description">{@html marked(problem.description)}</div>
 
     <p class="cases">
       <span>マッチするべきものの例</span>
