@@ -2,6 +2,8 @@
   import type { Problem, TestResult } from '../problem';
   import { resultMessage } from '../problem';
   import hljs from 'highlight.js';
+  import marked from 'marked';
+
   export let problem: Problem;
   let regexp: string = '';
   let error: string = '';
@@ -69,7 +71,7 @@
 <div class="problem">
   <h2 class="title">{problem.title}</h2>
   <div class="contents">
-    <p class="description">{problem.description}</p>
+    <p class="description">{marked(problem.description)}</p>
 
     <p class="cases">
       <span>マッチするべきものの例</span>
