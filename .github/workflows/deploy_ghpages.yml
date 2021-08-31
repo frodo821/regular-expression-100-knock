@@ -1,1 +1,27 @@
+on:
+  push:
+    branches:
+      master
+  pull_request:      
 
+jobs:
+  deploy:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: setup Node.js environment
+        uses: actions/setup-node@v2.4.0
+        with:
+          node-version: 15.10.0
+          cache: npm
+      - name: build project
+        run: |
+          npm install
+          npm run build
+      - name: deploy
+        uses: peaceiris/actions-gh-pages@v3
+        if: ${{ github.ref == 'refs/heads/main' }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
