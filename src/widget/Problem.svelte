@@ -52,6 +52,18 @@
       status: 'accepted',
     };
   }
+
+  function runTests(evt: Event) {
+    result = null;
+    error = '';
+
+    try {
+      result = testAll(new RegExp(`^(${regexp.replace(/^\^|\$$/g, '')})$`));
+    } catch (e) {
+      error = stripError(e);
+    }
+    evt.preventDefault();
+  }
 </script>
 
 <div class="problem">
@@ -84,20 +96,7 @@
       </code>
     </p>
     <h3>回答欄</h3>
-    <form
-      action="#"
-      on:submit={(evt) => {
-        result = null;
-        error = '';
-
-        try {
-          result = testAll(new RegExp(`^(${regexp.replace(/^\^|\$$/g, '')})$`));
-        } catch (e) {
-          error = stripError(e);
-        }
-        evt.preventDefault();
-      }}
-    >
+    <form action="#" on:submit={runTests}>
       <div class="editor">
         <input type="text" class="edit" bind:value={regexp} />
         <code class="hl">
@@ -132,6 +131,7 @@
     position: sticky;
     top: 0;
     background: white;
+    z-index: 2;
   }
 
   h3 {
@@ -216,6 +216,22 @@
     padding: 0.2rem 0.4rem;
     margin-top: 0.2rem;
     border-radius: 2px;
+  }
+
+  .result {
+    padding: 0.2rem 0.4rem;
+    margin-top: 0.2rem;
+    border-radius: 2px;
+
+    &.wrong {
+      background: rgb(255, 142, 108);
+      color: rgb(94, 7, 7);
+    }
+
+    &.accepted {
+      background: rgb(163, 255, 140);
+      color: rgb(0, 11, 46);
+    }
   }
 
   .submit {
