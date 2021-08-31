@@ -87,11 +87,13 @@
     <form
       action="#"
       on:submit={(evt) => {
+        result = null;
+        error = '';
+
         try {
           result = testAll(
-            new RegExp(`^${regexp}$`.replace(/(\^|\$){2}/g, '$1'))
+            new RegExp(`^${regexp}$`.replace(/(\^|\$)\1/g, '$1'))
           );
-          error = '';
         } catch (e) {
           error = stripError(e);
         }
