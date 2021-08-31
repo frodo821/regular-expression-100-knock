@@ -15,7 +15,7 @@
   },
   {
     "title": "数に注目",
-    "description": "5個連続する並びにマッチするには？",
+    "description": "同じ文字が5個並ぶ文字列にマッチしてみよう。",
     "test_cases": {
       "passes": [
         "aaaaa",
