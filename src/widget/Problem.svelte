@@ -91,9 +91,7 @@
         error = '';
 
         try {
-          result = testAll(
-            new RegExp(`^${regexp}$`.replace(/(\^|\$)\1/g, '$1'))
-          );
+          result = testAll(new RegExp(`^(${regexp.replace(/^\^|\$$/g, '')})$`));
         } catch (e) {
           error = stripError(e);
         }
