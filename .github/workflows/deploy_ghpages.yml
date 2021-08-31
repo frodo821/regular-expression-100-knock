@@ -2,7 +2,8 @@ on:
   push:
     branches:
       master
-  pull_request:      
+  pull_request:
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -18,7 +19,7 @@ jobs:
       - name: build project
         run: |
           npm install
-          npm run build
+          bash -c "timeout --preserve-status 2m npm run build; true"
       - name: deploy
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.ref == 'refs/heads/main' }}
