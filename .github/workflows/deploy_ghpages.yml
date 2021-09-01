@@ -26,11 +26,13 @@ jobs:
             fi
           done < files.txt
 
-  build:
+  build-deploy:
     runs-on: ubuntu-20.04
     needs:
       - check
     steps:
+      - name: checkout
+        uses: actions/checkout@v2
       - name: setup Node.js environment
         uses: actions/setup-node@v2.4.0
         with:
@@ -42,11 +44,6 @@ jobs:
           npm install
           bash -c "timeout --preserve-status 2m npm run build; true"
         if: ${{ needs.check.outputs.run_job }}
-  deploy:
-    runs-on: ubuntu-20.04
-    needs:
-      - build
-    steps:
       - name: deploy
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.ref == 'refs/heads/master' }}
