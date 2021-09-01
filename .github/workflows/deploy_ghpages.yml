@@ -17,7 +17,7 @@ jobs:
       - name: check modified files
         id: check_files
         run: |
-          git diff --name-only ${github.base_ref} ${github.head_ref} > files.txt
+          git diff --name-only ${{ github.base_ref }} ${{ github.head_ref }} > files.txt
           while IFS= read -r file
           do
             if [[ $file == src/* ]]; then
