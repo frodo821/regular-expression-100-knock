@@ -60,7 +60,7 @@
     error = '';
 
     try {
-      result = testAll(new RegExp(`^(${regexp.replace(/^\^|\$$/g, '')})$`));
+      result = testAll(new RegExp(`^(?:${regexp.replace(/^\^|\$$/g, '')})$`));
     } catch (e) {
       error = stripError(e);
     }
