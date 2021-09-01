@@ -6,30 +6,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  check:
-    name: check files
-    outputs:
-      run_job: ${{ steps.check_files.outputs.run_job }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout
-        uses: actions/checkout@v2
-      - name: check modified files
-        id: check_files
-        run: |
-          git diff --name-only ${{ github.base_ref }} ${{ github.head_ref }} > files.txt
-          while IFS= read -r file
-          do
-            if [[ $file == src/* ]]; then
-              echo "::set-output name=run_job::true"
-              break
-            fi
-          done < files.txt
-
   build-deploy:
     runs-on: ubuntu-20.04
-    needs:
-      - check
     steps:
       - name: checkout
         uses: actions/checkout@v2
@@ -38,12 +16,10 @@ jobs:
         with:
           node-version: 15.10.0
           cache: npm
-        if: ${{ needs.check.outputs.run_job }}
       - name: build project
         run: |
           npm install
           bash -c "timeout --preserve-status 2m npm run build; true"
-        if: ${{ needs.check.outputs.run_job }}
       - name: deploy
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.ref == 'refs/heads/master' }}
