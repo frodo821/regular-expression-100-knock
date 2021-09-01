@@ -1,0 +1,35 @@
+[
+  {
+    "title": "はじめの一歩",
+    "description": "まずはこの問題から始めてみよう。",
+    "test_cases": {
+      "passes": [
+        "a", "aa", "aaa", "aaaa", "aaaaa",
+        "b", "bb", "bbb", "bbbb", "bbbbb",
+        "c", "cc", "ccc", "cccc", "ccccc"
+      ],
+      "fails": [],
+      "hidden_passes": [],
+      "hidden_fails": []
+    }
+  },
+  {
+    "title": "数に注目",
+    "description": "同じ文字が5個並ぶ文字列にマッチしてみよう。",
+    "test_cases": {
+      "passes": [
+        "aaaaa",
+        "bbbbb",
+        "ccccc"
+      ],
+      "fails": [
+        "aa",
+        "abc",
+        "cccccc",
+        "acabb"
+      ],
+      "hidden_passes": [],
+      "hidden_fails": []
+    }
+  }
+]
