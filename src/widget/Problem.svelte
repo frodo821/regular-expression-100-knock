@@ -192,7 +192,7 @@
       padding: 0.2rem 0.4rem;
       margin: 0;
       width: 100%;
-      font-weight: 600;
+      font-weight: 900;
 
       &::selection {
         color: transparent;
