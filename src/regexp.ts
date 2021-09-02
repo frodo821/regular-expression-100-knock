@@ -18,12 +18,12 @@ const regexp: LanguageFn = (api) => {
       },
       {
         scope: 'regexp',
-        begin: /\\P{/,
-        end: /}/,
+        begin: /\\k</,
+        end: />/,
         contains: [
           {
             scope: 'title',
-            match: /[^>}]/,
+            match: /[^>]/,
           },
         ],
       },
@@ -48,12 +48,12 @@ const regexp: LanguageFn = (api) => {
         contains: [
           {
             scope: 'attribute',
-            begin: /</,
-            end: />\?/,
+            begin: /\?</,
+            end: />/,
             contains: [
               {
                 scope: 'title',
-                match: /[^>}]+/,
+                match: /[^>]+/,
               },
             ],
           },
